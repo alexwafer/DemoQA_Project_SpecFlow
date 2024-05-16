@@ -11,7 +11,7 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions
     {
         private readonly ISpecFlowOutputHelper _outputHelper;
         private static string BrowserName {  get; set; }
-        private static bool checkLogPresence = false;
+        private static bool checkLogsPresence = false;
 
         public Hooks(ChromeBrowserService DriverInstance, FeatureContext FeatureContext, ScenarioContext ScenarioContext, ISpecFlowOutputHelper outputHelper) 
             : base(DriverInstance, FeatureContext, ScenarioContext) 
@@ -22,7 +22,7 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions
         [BeforeFeature]
         public static void PrepareFeature(FeatureContext context, ISpecFlowOutputHelper specFlowOutputHelper)
         {
-            if (checkLogPresence)
+            if (checkLogsPresence)
             {
                 LoggerUtility.ClearFolderLogs();
                 BasicConfigurator.Configure(new CustomLogAppender(specFlowOutputHelper));
