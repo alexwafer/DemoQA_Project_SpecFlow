@@ -1,0 +1,230 @@
+﻿
+----------------------------------------------------PracticeForm.feature--------------------------------------------
+Feature: PracticeForm
+ 
+
+@practiceFormTag
+Scenario: Navigate and Complete Form from DEMOQA
+	Given I navigate to demoqa.com
+	And i click on practice form
+	And I click on practice form from LHM
+	And I complete form with the following data:
+	| FirstName | LastName | UserEmailName           | PhoneNumber |
+	| alex      | rosca    | alexrosca@yahoo.com     | 1234567809  |
+	Then I submit form
+
+@practiceFormTag
+Scenario: Navigate and Complete Form from DEMOQA dataSet_2
+	Given I navigate to demoqa.com
+	And i click on practice form
+	And I click on practice form from LHM
+	And I complete form with the following data:
+	| FirstName | LastName | UserEmailName           | PhoneNumber |
+	| alex      | dorha    | alexdorha@yahoo.com     | 858585858  |
+	Then I submit form
+
+@practiceFormTag
+Scenario: Navigate and Complete Form from DEMOQA dataSet_3
+	Given I navigate to demoqa.com
+	And i click on practice form
+	And I click on practice form from LHM
+	And I complete form with the following data:
+	| FirstName | LastName | UserEmailName           | PhoneNumber |
+	| cristiano | ronaldo  | cristiano@yahoo.com     | 858585858  |
+	Then I submit form
+
+Notes: in fisierul asta abordarea a fost mai multe scenarii in care schimb datele, asa trebuie sa scrii de multe ori acelasi lucru
+
+----------------------------------------------------PracticeForm.feature--------------------------------------------
+
+
+----------------------------------------------------PracticeFormExample.feature--------------------------------------------
+Feature: PracticeFormExample
+ 
+ Background:
+        Given I navigate to the demoqa website
+
+@practiceFormExampleTag
+Scenario Outline: Navigate and Complete Form from DEMOQA
+	And i click on practice form elmeent
+	And I click on practice form from LHM element
+	And I enter details in form:
+	| FirstName   | LastName   | UserEmailName            | PhoneNumber     |
+    | <FirstName> | <LastName> | <UserEmailName>          | <PhoneNumber>   |
+
+	Then I submit form from site
+	
+	Examples: 
+		| FirstName | LastName | UserEmailName           | PhoneNumber |
+		| alex      | rosca    | alexrosca@yahoo.com     | 123456785543sd09  |
+		| alex      | dorha    | alexdorha@yahoo.com     | 1234567545445809  |
+		| sandu     | moca     | sandumoca@yahoo.com     | 1234512311367809  |
+		| sandel    |  shjasd  | sandel@yahoo.com        | 1234543245567809  |
+		| cirstiano | rosdasdca| cristiano@yahoo.com     | 1234564554547809  |
+
+Notes: in fisierul asta abordarea a fost mai multe scenarii in care schimb datele, asa scrii un singur scenariu cu outline si schimbi datele.
+Este foarte important ca in pasul in care completezi sa specifici tabelul asta:
+	| FirstName   | LastName   | UserEmailName            | PhoneNumber     |
+    | <FirstName> | <LastName> | <UserEmailName>          | <PhoneNumber>   |
+
+De ce? Pentru ca metoda, aici ma refer in setps sa poata lua metoda parametrul:
+        public void GivenIEnterDetailsInForm(Table table)
+        {
+            practiceFormPage = new PracticeFormPage(driver);
+
+            var data = table.CreateInstance<PracticeFormObject>();
+            practiceFormPage.CompleteFirstFields(data);
+        }
+Table heads trebuie sa fie la fel pentru a prelua datele
+
+----------------------------------------------------PracticeFormExample.feature--------------------------------------------
+
+
+
+
+----------------------------------------------------Comanda de generare LivigDoc--------------------------------------------
+1. mergem in path-ul cu proiectul: cd F:\Specflow_and_API\source\repos\DemoQA_Project_SpecFlow\bin\Debug\net6.0
+2. executam comanda: livingdoc test-assembly numeProiect(DemoQA_Project_SpecFlow).dll -t TestExecution.json
+3. livingdoc.html
+
+
+2. livingdoc test-assembly DemoQA_Project_SpecFlow.dll -t TestExecution.json
+----------------------------------------------------Comanda de generare LivigDoc--------------------------------------------
+
+---discutie alex---
+1. ca sa rulez testele pe remote din cmd
+- ma duc in pathul versiunii de .net core
+F:\Specflow_and_API\source\repos\DemoQA_Project_SpecFlow\bin\Debug\net6.0
+- deschid un cmd
+- rulez comanda sa porneasca testele
+dotnet test DemoQA_Project_Specflow.dll (continuare filtrare)
+
+--de terminat feature existente + definire taguri
+--trebuie sa vad cum pot sa modifi comanda de sus ca sa filtreze dupa taguri (TestCategory/ --where "cat==RegressionSuite")
+
+----------------------------------------------------Intrebari---------------------------------------------------------------
+
+1. Nu imi e clar daca vreau sa parametrizez click on "element". Eu sunt in PracticeForm.feature 
+ii zic click on "Forms" merge pe PracticeFormStep, all good. 
+Fac acelasi lucru in PracticeFormExample.feature ii zic click on "Forms", tot in PractifeFormStep merge. 
+Nu trebuie sa fie fiecare feature cu steps ai lui? Sau se poate ceva global?
+
+2. Scenario Context? Folosit pentru a extrage date pentru extend report? 
+2.1. Cumva aici se ia cheia si semnatura apoi eu o apelez in functie de semnatura gen asa am inteles.
+	Am mai vazut asta cand voiai sa definesti la table sa iti gaseasca table dupa semnatura, n-am prea inteles acolo
+ex: scenarioContext.Set(driver, "WebDriver");
+
+3. Care e faza cu _container.RegisterInstanceAs<IWebDriver>(driver);
+
+4. Paralelism doar pe feature. Nu pe Scenarii. Ce am observat este ca daca ruleaza mai multe scenarii in paralel pica. Daca ruleaza one by one trec.
+Ce se intamapla si de ce e asa? Cum as putea sa fac daca am 10000 de scenarii sa ruleze mai multe odata. In ideea in care poate am doar un feature cu 1000 de scenarii
+Sau nu exista asa ceva?
+
+5. De regula intr-o maturitate a unei astfel de modalitati de lucru sunt mai multe feature-uri? E un feature cu mai multe scenarii? Si legat de steps ce se intampla acolo?
+
+6. Cum customizezi un livigdoc? 
+
+7. Ce mai este pe aici?
+
+
+
+
+
+
+
+
+
+
+
+
+
+@RegressionSuite
+Feature: PracticeFormExample
+	In order to interact with practice form page I need to navigate on it and fill the entire form
+
+Scenario Outline: Navigate to PracticeFormPage and fill the entire form with valid values
+	Given Home page was displayed
+	When I click on Forms menu
+	And I click on Practice Form subMenu
+	And I fill the entire form with the following details
+	| FirstName   | LastName   | UserEmailName            | UserNumber     |
+    | <FirstName> | <LastName> | <UserEmailName>          | <UserNumber>   |
+	When I submit form from site
+	Then I validate all the entered fields from form page
+	| FirstName   | LastName   | UserEmailName            | UserNumber     |
+    | <FirstName> | <LastName> | <UserEmailName>          | <UserNumber>   |
+	
+	Examples: 
+		| FirstName | LastName | UserEmailName           | UserNumber		 |
+		| alex      | rosca    | alexrosca@yahoo.com     | 1234567890	     |
+
+Scenario Outline: Navigate to PracticeFormPage and fill the entire form with invalid values
+	Given Home page was displayed
+	When I click on Forms menu
+	And I click on Practice Form subMenu
+	And I fill the entire form with the following details
+	| FirstName   | LastName   | UserEmailName            | UserNumber     |
+    | <FirstName> | <LastName> | <UserEmailName>          | <UserNumber>   |
+	When I submit form from site
+	Then I validate all the entered fields from form page
+	| FirstName   | LastName   | UserEmailName            | UserNumber     |
+    | <FirstName> | <LastName> | <UserEmailName>          | <UserNumber>   |
+	
+	Examples: 
+		| FirstName | LastName | UserEmailName           | UserNumber		 |
+		| alex      | rosca    |						 | 1234567855		 |
+		| alex      | dorha    | alexdorha@yahoo.com     |                   |
+		| sandu     |          | sandumoca@yahoo.com     | 1234512311		 |
+		|           |  shjasd  | sandel@yahoo.com        | 1234543245		 |
+		|           |          |                         |                   |
+
+
+
+
+
+
+
+
+
+
+
+		@RegressionSuite
+Feature: PracticeFormExample
+	In order to interact with practice form page I need to navigate on it and fill the entire form
+
+Scenario Outline: Navigate to PracticeFormPage and fill the entire form with valid values
+	Given Home page was displayed
+	When I click on Forms menu
+	And I click on Practice Form subMenu
+	And I fill the entire form with the following details
+	| FirstName   | LastName   | UserEmail            | UserNumber     |
+    | <FirstName> | <LastName> | <UserEmail>          | <UserNumber>   |
+	When I submit form from site
+	Then I validate all the entered fields from form page
+	| FirstName   | LastName   | UserEmail            | UserNumber     |
+    | <FirstName> | <LastName> | <UserEmail>          | <UserNumber>   |
+	
+	Examples: 
+		| FirstName | LastName | UserEmail           | UserNumber		 |
+		| alex      | rosca    | alexrosca@yahoo.com     | 1234567890	     |
+
+Scenario Outline: Navigate to PracticeFormPage and fill the entire form with invalid values
+	Given Home page was displayed
+	When I click on Forms menu
+	And I click on Practice Form subMenu
+	And I fill the entire form with the following details
+	| FirstName   | LastName   | UserEmail   | UserNumber   | CurrentAddress   | 
+	| <FirstName> | <LastName> | <UserEmail> | <UserNumber> | <CurrentAddress> |
+	When I submit form from site
+	Then I validate all the entered fields from form page
+	| FirstName   | LastName   | UserEmail   | UserNumber   | CurrentAddress   |
+	| <FirstName> | <LastName> | <UserEmail> | <UserNumber> | <CurrentAddress> |
+	
+	Examples: 
+		| FirstName | LastName | UserEmail           | UserNumber | CurrentAddress |
+		| alex      | rosca    |                     | 1234567855 | str.Iorga      |
+		| alex      | dorha    | alexdorha@yahoo.com |            |                |
+		| sandu     |          | sandumoca@yahoo.com | 1234512311 |                |
+		|           | shjasd   | sandel@yahoo.com    | 1234543245 | str.Iancu      |
+		|           |          |                     |            |                |
+
