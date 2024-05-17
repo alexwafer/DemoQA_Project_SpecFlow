@@ -10,7 +10,6 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions
     public class Hooks : BaseSteps
     {
         private readonly ISpecFlowOutputHelper _outputHelper;
-        private static string BrowserName {  get; set; }
         private static bool checkLogsPresence = false;
 
         public Hooks(ChromeBrowserService DriverInstance, FeatureContext FeatureContext, ScenarioContext ScenarioContext, ISpecFlowOutputHelper outputHelper) 

@@ -97,7 +97,10 @@ Table heads trebuie sa fie la fel pentru a prelua datele
 F:\Specflow_and_API\source\repos\DemoQA_Project_SpecFlow\bin\Debug\net6.0
 - deschid un cmd
 - rulez comanda sa porneasca testele
-dotnet test DemoQA_Project_Specflow.dll (continuare filtrare)
+dotnet test DemoQA_Project_Specflow.dll (continuare filtrare)   => dotnet test DemoQA_Project_Specflow.dll --filter TestCategory=FeaturesSuite; => doar asta
+																=> dotnet test DemoQA_Project_Specflow.dll --filter "TestCategory=FeaturesSuite|TestCategory=SmokeSuite" => sau logic
+														        => dotnet test DemoQA_Project_Specflow.dll --filter "TestCategory=FeaturesSuite&TestCategory=SmokeSuite" => si logic
+																=> dotnet test DemoQA_Project_Specflow.dll --filter TestCategory!=FeaturesSuite => nu logic
 
 --de terminat feature existente + definire taguri
 --trebuie sa vad cum pot sa modifi comanda de sus ca sa filtreze dupa taguri (TestCategory/ --where "cat==RegressionSuite")
