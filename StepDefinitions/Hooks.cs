@@ -21,10 +21,11 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions
         [BeforeFeature]
         public static void PrepareFeature(FeatureContext context, ISpecFlowOutputHelper specFlowOutputHelper)
         {
-            if (checkLogsPresence)
+            if (!checkLogsPresence)
             {
                 LoggerUtility.ClearFolderLogs();
                 BasicConfigurator.Configure(new CustomLogAppender(specFlowOutputHelper));
+                checkLogsPresence = true;
                 
             }
             LoggerUtility.StartFeature(context.FeatureInfo.Title);
