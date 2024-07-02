@@ -31,9 +31,6 @@ jobs:
       - name: Set executable permission for Selenium Manager
         run: |
           chmod +x $(find . -name selenium-manager -type f)
-          
-      - name: Install trx2json tool
-        run: dotnet tool install --global trx2json
         
       - name: Install LivingDoc
         run: |
@@ -42,8 +39,10 @@ jobs:
       - name: Run tests and generate TRX results
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger trx
         
-      - name: Convert TRX to JSON
-        run: dotnet trx2json TestResults.trx -o TestExecution.json
+      - name: Convert TRX to JUnit Json
+        run: |
+          pip install trx2junit
+          trx2junit TestExecution.trx -o TestExecution.json
         
       - name: Generate Living Documentation
         run: livingdoc test-assembly bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t TestExecution.json
