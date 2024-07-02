@@ -39,11 +39,14 @@ jobs:
       - name: Run tests and generate TRX results
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx"
       
+      - name: Install trx2junit
+        run: |
+          dotnet new tool-manifest
+          dotnet tool install --local trx2junit --version 1.5.0
+
       - name: Convert TRX to JSON
         run: |
           mkdir -p TestResults
-          dotnet new tool-manifest
-          dotnet tool install trx2junit --version 1.5.0 --tool-path ./
           ./trx2junit TestResults/*.trx -o TestExecution.json
 
       - name: Generate Living Documentation
