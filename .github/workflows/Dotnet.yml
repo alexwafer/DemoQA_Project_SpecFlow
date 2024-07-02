@@ -1,0 +1,45 @@
+name: .NET Core Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: 'Choose suite: FeaturesSuite, RegressionSuite'
+        required: true
+        default: FeaturesSuite
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  
+    permissions: write-all
+
+    env:
+      ciCd: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x  # Replace 'x' with the desired version      
+
+      - name: Dotnet build
+        run: dotnet build DemoQA_Project_SpecFlow.sln 
+
+      - name: Set executable permission for Selenium Manager
+        run: |
+          chmod +x DemoQA_Project_SpecFlow\bin\Debug\net6.0/selenium-manager/linux/selenium-manager
+
+      - name: Run tests
+        run: dotnet test DemoQA_Project_SpecFlow/DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
+
+      - name: Upload test evidence as artifact
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: SuiteResults
+          path: |
+            DemoQA_Project_SpecFlow/logs
+            DemoQA_Project_SpecFlow/reports
