@@ -30,10 +30,10 @@ jobs:
 
       - name: Set executable permission for Selenium Manager
         run: |
-          chmod +x DemoQA_Project_SpecFlow\bin\Debug\net6.0/selenium-manager/linux/selenium-manager
+          chmod +x $(find . -name selenium-manager -type f)
 
       - name: Run tests
-        run: dotnet test DemoQA_Project_SpecFlow/DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
+        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
 
       - name: Upload test evidence as artifact
         if: always()
