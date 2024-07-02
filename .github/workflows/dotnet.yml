@@ -37,7 +37,7 @@ jobs:
           dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
           
       - name: Run tests
-        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --out TestExecution.json
+        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
 
       - name: Generate Living Documentation
         run: livingdoc test-assembly bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t TestExecution.json
