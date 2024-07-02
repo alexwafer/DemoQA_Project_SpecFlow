@@ -41,5 +41,5 @@ jobs:
         with:
           name: SuiteResults
           path: |
-            DemoQA_Project_SpecFlow/logs
-            DemoQA_Project_SpecFlow/reports
+            DemoQA_Project_SpecFlow/bin/Debug/net6.0/LivingDoc
+            
