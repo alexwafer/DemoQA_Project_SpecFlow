@@ -56,8 +56,9 @@ namespace DemoQA_Project_SpecFlow.Utils
             WaitExplicit.Until(Driver => Element.Displayed);
         }
 
-        public void ClickWithJS(IWebElement Element)
+        public void ClickWithJS(string elementName)
         {
+            IWebElement Element = Driver.FindElement(By.XPath($"//*[text()='{elementName}']"));
             JsExecutor.ExecuteScript("arguments[0].click();", Element);
 
         }

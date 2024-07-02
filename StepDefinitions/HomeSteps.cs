@@ -1,5 +1,6 @@
 ﻿using DemoQA_Project_SpecFlow.Drivers;
 using DemoQA_Project_SpecFlow.Pages;
+using DemoQA_Project_SpecFlow.Utils;
 using NUnit.Framework;
 
 namespace DemoQA_Project_SpecFlow.StepDefinitions
@@ -12,12 +13,13 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions
         { }
 
         public HomePage HomePage { get; private set; }
+        public Helpers Helpers { get; private set; }
 
         [When("I click on (.*) menu")]
         public void GivenIClickOn(string elementName)
         {
             HomePage = new HomePage(DriverInstance.Driver);
-            HomePage.Click(elementName);
+            Helpers.ClickWithJS(elementName);
         }
 
         [Given("Home page was displayed")]
