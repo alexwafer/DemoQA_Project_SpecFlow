@@ -31,6 +31,7 @@ jobs:
       - name: Set executable permission for Selenium Manager
         run: |
           chmod +x $(find . -name selenium-manager -type f)
+          
       - name: Run tests
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
 
