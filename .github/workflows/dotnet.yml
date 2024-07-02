@@ -32,6 +32,9 @@ jobs:
         run: |
           chmod +x $(find . -name selenium-manager -type f)
           
+      - name: Install trx2json tool
+        run: dotnet tool install --global trx2json
+        
       - name: Install LivingDoc
         run: |
           dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
