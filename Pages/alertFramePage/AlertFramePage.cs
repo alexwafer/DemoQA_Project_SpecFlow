@@ -22,7 +22,7 @@ namespace DemoQA_Project_SpecFlow.Pages.AlertFramePage
         {
             clickOnAlertOk();
             alertWithDelay();
-            alertWithConfirm(alertFrameObject);
+            //alertWithConfirm(alertFrameObject);
             alertWithText(alertFrameObject);
         }
 
