@@ -19,6 +19,7 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions
         public void GivenIClickOn(string elementName)
         {
             HomePage = new HomePage(DriverInstance.Driver);
+            Helpers = new Helpers(DriverInstance.Driver);
             Helpers.ClickWithJS(elementName);
         }
 

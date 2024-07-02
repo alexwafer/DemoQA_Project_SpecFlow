@@ -58,17 +58,8 @@ namespace DemoQA_Project_SpecFlow.Utils
 
         public void ClickWithJS(string elementName)
         {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            IWebElement element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath($"//button[contains(text(),{elementName})]")));
-
-            // Execută un script JavaScript pentru a face click pe element
-            IJavaScriptExecutor js = (IJavaScriptExecutor)Driver;
-            js.ExecuteScript("arguments[0].click();", element);
-
-
-/*
             IWebElement Element = Driver.FindElement(By.XPath($"//*[text()='{elementName}']"));
-            JsExecutor.ExecuteScript("arguments[0].click();", Element);*/
+            JsExecutor.ExecuteScript("arguments[0].click();", Element);
 
         }
         public void SelectByText(IWebElement Identificator, string Value)
