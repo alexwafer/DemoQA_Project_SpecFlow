@@ -40,7 +40,7 @@ jobs:
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
         
       - name: Generate testexecution.json
-        run: dotnet specflow generateall *.csproj
+        run: dotnet specflow generateall --project-path *.csproj
         
       - name: Generate Living Documentation
         run: livingdoc test-assembly bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t *.json
