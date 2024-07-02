@@ -40,7 +40,7 @@ jobs:
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
 
       - name: Generate Living Documentation
-        run: ivingdoc test-assembly ${{ env.DLL_PATH }} -t ${{ env.TEST_EXECUTION_FILE }}
+        run: livingdoc test-assembly ${{ env.DLL_PATH }} -t ${{ env.TEST_EXECUTION_FILE }}
 
       - name: Upload test evidence as artifact
         if: always()
