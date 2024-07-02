@@ -23,7 +23,7 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions
         {
             if (!checkLogsPresence)
             {
-               // LoggerUtility.ClearFolderLogs();
+                LoggerUtility.ClearFolderLogs();
                 BasicConfigurator.Configure(new CustomLogAppender(specFlowOutputHelper));
                 checkLogsPresence = true;
                 
