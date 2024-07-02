@@ -39,13 +39,13 @@ jobs:
       - name: Run tests and generate TRX results
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger trx
         
-      - name: Convert TRX to JUnit Json
+      - name: Convert TRX to JUnit XML
         run: |
-          pip install trx2junit
-          trx2junit TestExecution.trx -o TestExecution.json
+          dotnet tool install --global trx2xml
+          trx2xml -x TestExecution.trx -o TestExecution.xml
         
       - name: Generate Living Documentation
-        run: livingdoc test-assembly bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t TestExecution.json
+        run: livingdoc test-assembly bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t TestExecution.xml
 
       - name: Upload test evidence as artifact
         if: always()
