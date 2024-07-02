@@ -26,7 +26,7 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions.AlertFrameSteps
         {
             AlertFramePage = new AlertFramePage(DriverInstance.Driver);
             var data = InputObject.GetSpecificObject<AlertsObject>();
-            AlertFramePage.ClickOnEveryAlert(data);
+            AlertFramePage.ClickOnEveryAlertJS(data);
         }
 
     }

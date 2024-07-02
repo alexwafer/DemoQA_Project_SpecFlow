@@ -58,7 +58,7 @@ namespace DemoQA_Project_SpecFlow.Utils
 
         public void ClickWithJS(string elementName)
         {
-            IWebElement Element = Driver.FindElement(By.XPath($"//*[text()='{elementName}']"));
+            IWebElement Element = Driver.FindElement(By.XPath($"//*[text()='{elementName}' or @id='{elementName}']"));
             JsExecutor.ExecuteScript("arguments[0].click();", Element);
 
         }

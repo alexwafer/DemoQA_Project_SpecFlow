@@ -12,17 +12,17 @@ namespace DemoQA_Project_SpecFlow.Pages.AlertFramePage
     {
         public AlertFramePage(IWebDriver driver) : base(driver)
         { }
-       
+/*       
         private IWebElement AlertButton => Driver.FindElement(By.Id("alertButton"));
         private IWebElement TimerAlertButton => Driver.FindElement(By.Id("timerAlertButton"));
         private IWebElement ConfirmAlertButtonButton => Driver.FindElement(By.Id("confirmButton"));
         private IWebElement PromptAlertButton => Driver.FindElement(By.Id("promtButton"));
 
-        public void ClickOnEveryAlert(AlertsObject alertFrameObject)
+       *//* public void ClickOnEveryAlert(AlertsObject alertFrameObject)
         {
             clickOnAlertOk();
             alertWithDelay();
-            //alertWithConfirm(alertFrameObject);
+            alertWithConfirm(alertFrameObject);
             alertWithText(alertFrameObject);
         }
 
@@ -49,6 +49,42 @@ namespace DemoQA_Project_SpecFlow.Pages.AlertFramePage
             Helpers.ClickOnElement(PromptAlertButton);
             AlertHelper.AlertWithPrompt(alertFrameObject.AlertInput);
 
+        }*/
+
+
+        public void ClickOnEveryAlertJS(AlertsObject alertFrameObject)
+        {
+            clickOnAlertOkJS();
+            alertWithDelayJS();
+            alertWithConfirmJS(alertFrameObject);
+            alertWithTextJS(alertFrameObject);
         }
+
+        public void clickOnAlertOkJS()
+        {
+            Helpers.ClickWithJS("alertButton");
+            AlertHelper.AlertOk();
+        }
+
+        public void alertWithDelayJS()
+        {
+            Helpers.ClickWithJS("timerAlertButton");
+            AlertHelper.AlertWithDelay();
+        }
+
+        public void alertWithConfirmJS(AlertsObject alertFrameObject)
+        {
+            Helpers.ClickWithJS("confirmButton");
+            AlertHelper.AlertWithConfirmOrCancel(alertFrameObject.AlertOption);
+        }
+
+        public void alertWithTextJS(AlertsObject alertFrameObject)
+        {
+            Helpers.ClickWithJS("promtButton");
+            AlertHelper.AlertWithPrompt(alertFrameObject.AlertInput);
+
+        }
+
+
     }
 }
