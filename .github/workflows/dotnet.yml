@@ -10,7 +10,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  
+    permissions: write-all
+
+    env:
+      ciCd: true
 
     steps:
       - name: Checkout repository
@@ -21,11 +25,12 @@ jobs:
         with:
           dotnet-version: 6.0.x  # Replace 'x' with the desired version
 
-      - name: Restore dependencies
-        run: dotnet restore DemoQA_Project_SpecFlow.csproj
-
       - name: Build project
         run: dotnet build DemoQA_Project_SpecFlow.csproj
+
+      - name: Set executable permission for Selenium Manager
+        run: |
+          chmod +x $(find . -name selenium-manager -type f)
 
       - name: Run tests and generate JSON results
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx" /p:CollectSpecFlowProjectInformation=true /p:JUnitXmlPath=./TestResults/TestExecution.json
