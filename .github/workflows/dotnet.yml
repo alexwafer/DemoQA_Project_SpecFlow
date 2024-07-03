@@ -39,11 +39,8 @@ jobs:
       - name: Run tests
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
         
-      - name: Generate testexecution.json
-        run: dotnet specflow generateall --project-path DemoQA_Project_SpecFlow.csproj
-        
       - name: Generate Living Documentation
-        run: livingdoc test-assembly bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t *.json
+        run: livingdoc test-assembly bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t json
 
       - name: Upload test evidence as artifact
         if: always()
