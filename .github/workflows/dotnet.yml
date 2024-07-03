@@ -35,9 +35,6 @@ jobs:
       - name: Install dotnet-livingdoc global tool
         run: dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
 
-      - name: Add dotnet tools to PATH
-        run: echo "::add-path::$(dotnet tool run dotnet-livingdoc)"
-
       - name: Run tests and generate LivingDoc
         run: |
           dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
