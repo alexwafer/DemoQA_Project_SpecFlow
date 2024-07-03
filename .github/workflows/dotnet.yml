@@ -37,19 +37,25 @@ jobs:
           dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
           
       - name: Run tests and generate TestResults.trx
-        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=TestResults.trx" --results-directory ./bin/Debug/net6.0/
+        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=TestResults.trx" --results-directory ./bin/Debug/net6.0/ --verbosity detailed
 
       - name: List output files
         run: ls -la ./bin/Debug/net6.0/
 
+      - name: Display TRX file content
+        run: cat ./bin/Debug/net6.0/TestResults.trx
+
       - name: Transform TRX to LivingDoc JSON
         run: |
-          livingdoc test-assembly ./bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t ./bin/Debug/net6.0/TestResults.trx -o ./bin/Debug/net6.0/LivingDoc/TestExecution.json
+          livingdoc test-assembly ./bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t ./bin/Debug/net6.0/TestResults.trx -o ./bin/Debug/net6.0/LivingDoc/TestExecution.json > livingdoc_output.log 2>&1
         continue-on-error: true
 
       - name: Display LivingDoc log
         if: failure()
         run: cat livingdoc_output.log
+
+      - name: Display JSON file content
+        run: cat ./bin/Debug/net6.0/LivingDoc/TestExecution.json
 
       - name: Upload test evidence as artifact
         if: always()
