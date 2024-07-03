@@ -25,7 +25,7 @@ jobs:
         run: dotnet restore DemoQA_Project_SpecFlow.csproj
 
       - name: Build project
-        run: dotnet build DemoQA_Project_SpecFlow.csproj --configuration Release
+        run: dotnet build DemoQA_Project_SpecFlow.csproj
 
       - name: Run tests and generate JSON results
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx" /p:CollectSpecFlowProjectInformation=true /p:JUnitXmlPath=./TestResults/TestExecution.json
