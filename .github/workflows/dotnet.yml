@@ -11,7 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: write-all
 
     env:
       ciCd: true
@@ -23,7 +22,7 @@ jobs:
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.0.x  # Replace 'x' with the desired version
+          dotnet-version: 6.0.x  # Replace 'x' with the desired version (e.g., 6.0.100)
 
       - name: Install LivingDoc
         run: |
@@ -37,12 +36,11 @@ jobs:
           chmod +x $(find . -name selenium-manager -type f)
 
       - name: Run tests with LivingDoc integration
-        run: dotnet test DemoQA_Project_SpecFlow.csproj --logger "trx;LogFileName=testresults.trx" /p:CollectSpecFlowProjectInformation=true /p:GenerateSpecFlowLivingDoc=true /p:LivingDocOutputFormat=html
+        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx" /p:CollectSpecFlowProjectInformation=true /p:GenerateSpecFlowLivingDoc=true /p:LivingDocOutputFormat=html
 
       - name: Upload LivingDoc as artifact
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: LivingDocResults
-          path: |
-            DemoQA_Project_SpecFlow/bin/Debug/net6.0/LivingDoc  # Update with the actual path where LivingDoc generates HTML output
+          path: DemoQA_Project_SpecFlow/bin/Debug/net6.0/LivingDoc  # Update with the actual path where LivingDoc generates HTML output
