@@ -43,4 +43,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: LivingDocResults
-          path: DemoQA_Project_SpecFlow/TestResults/*.html  # Update with the actual path where LivingDoc generates HTML output
+          path: DemoQA_Project_SpecFlow/TestResults/LivingDoc  # Update with the actual path where LivingDoc generates HTML output
