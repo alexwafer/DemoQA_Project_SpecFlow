@@ -25,8 +25,9 @@ jobs:
         with:
           dotnet-version: 6.0.x  # Replace 'x' with the desired version
 
-      - name: Install SpecFlow.Plus.LivingDocPlugin
-        run: dotnet add package SpecFlow.Plus.LivingDocPlugin --version 4.2.1  # Replace <version> with the desired version of the package
+      - name: Install LivingDoc
+        run: |
+          dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
 
       - name: Dotnet build
         run: dotnet build DemoQA_Project_SpecFlow.sln
