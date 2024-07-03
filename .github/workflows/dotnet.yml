@@ -36,11 +36,12 @@ jobs:
           chmod +x $(find . -name selenium-manager -type f)
 
       - name: Run tests with LivingDoc integration
-        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx" /p:CollectSpecFlowProjectInformation=true /p:GenerateSpecFlowLivingDoc=true /p:LivingDocOutputFormat=html
+        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx" /p:CollectSpecFlowProjectInformation=true /p:GenerateSpecFlowLivingDoc=true /p:LivingDocOutputFormat=html /p:LivingDocOutputFolder=LivingDocOutput
+
 
       - name: Upload LivingDoc as artifact
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: LivingDocResults
-          path: DemoQA_Project_SpecFlow/TestResults/LivingDoc.html  # Update with the actual path where LivingDoc generates HTML output
+          path: DemoQA_Project_SpecFlow/LivingDocOutputFolder/LivingDoc.html  # Update with the actual path where LivingDoc generates HTML output
