@@ -36,14 +36,24 @@ jobs:
         run: |
           dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
           
-      - name: Run tests
-        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
+      - name: Run tests and generate TestResults.trx
+        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=TestResults.trx" --results-directory ./bin/Debug/net6.0/
+
+      - name: List output files
+        run: ls -la ./bin/Debug/net6.0/
+
+      - name: Transform TRX to LivingDoc JSON
+        run: |
+          livingdoc test-assembly ./bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t ./bin/Debug/net6.0/TestResults.trx -o ./bin/Debug/net6.0/LivingDoc/TestExecution.json
+        continue-on-error: true
+
+      - name: Display LivingDoc log
+        if: failure()
+        run: cat livingdoc_output.log
 
       - name: Upload test evidence as artifact
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: SuiteResults
-          path: |
-            DemoQA_Project_SpecFlow/bin/Debug/net6.0/LivingDoc
-            
+          path: DemoQA_Project_SpecFlow/bin/Debug/net6.0/LivingDoc
