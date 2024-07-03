@@ -32,9 +32,10 @@ jobs:
         run: |
           chmod +x $(find . -name selenium-manager -type f)
 
-          
-      - name: Run tests
-        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
+      - name: Run tests and generate LivingDoc
+        run: |
+          dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
+          dotnet livingdoc test-assembly "DemoQA_Project_SpecFlow.dll" --output ./LivingDoc
 
       - name: Upload test evidence as artifact
         if: always()
@@ -43,4 +44,11 @@ jobs:
           name: SuiteResults
           path: |
             DemoQA_Project_SpecFlow/bin/Debug/net6.0/LivingDoc
-            
+
+      - name: Upload LivingDoc as artifact
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: LivingDoc
+          path: |
+            LivingDoc
