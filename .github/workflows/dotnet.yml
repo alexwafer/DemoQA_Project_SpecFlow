@@ -12,9 +12,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      ciCd: true
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -22,28 +19,23 @@ jobs:
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.0.x  # Replace 'x' with the desired version (e.g., 6.0.100)
+          dotnet-version: 6.0.x  # Replace 'x' with the desired version
 
-      - name: Install LivingDoc
-        run: |
-          dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
+      - name: Restore dependencies
+        run: dotnet restore DemoQA_Project_SpecFlow.csproj
 
-      - name: Dotnet build
-        run: dotnet build DemoQA_Project_SpecFlow.sln
+      - name: Build project
+        run: dotnet build DemoQA_Project_SpecFlow.csproj --configuration Release
 
-      - name: Set executable permission for Selenium Manager
-        run: |
-          chmod +x $(find . -name selenium-manager -type f)
+      - name: Run tests and generate JSON results
+        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx" /p:CollectSpecFlowProjectInformation=true /p:JUnitXmlPath=./TestResults/TestExecution.json
 
-      - name: Run tests with LivingDoc integration
-        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx" /p:CollectSpecFlowProjectInformation=true /p:JUnitXmlPath=TestResults/TestExecution.json
-      
       - name: Generate LivingDoc
-        run: livingdoc test-assembly bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t TestResults/TestExecution.json
+        run: livingdoc test-assembly DemoQA_Project_SpecFlow.dll -t TestResults/TestExecution.json
 
       - name: Upload LivingDoc as artifact
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: LivingDocResults
-          path: DemoQA_Project_SpecFlow/TestResults/LivingDoc.html  # Update with the actual path where LivingDoc generates HTML output
+          path: TestResults  # Adjust this path to match the actual location where LivingDoc generates HTML output
