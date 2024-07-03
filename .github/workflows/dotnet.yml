@@ -37,10 +37,10 @@ jobs:
           dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
       
       - name: Run tests and generate JSON results
-        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} /p:CollectSpecFlowProjectInformation=true /p:JUnitXmlPath=TestExecution.json
+        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "json;LogFileName=TestResults/TestExecution.json" /p:CollectSpecFlowProjectInformation=true
 
       - name: Generate LivingDoc
-        run: livingdoc test-assembly /home/runner/work/DemoQA_Project_SpecFlow/DemoQA_Project_SpecFlow/bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t TestExecution.json
+        run: livingdoc test-assembly /home/runner/work/DemoQA_Project_SpecFlow/DemoQA_Project_SpecFlow/bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t TestResults/TestExecution.json
 
       - name: Upload LivingDoc as artifact
         if: always()
