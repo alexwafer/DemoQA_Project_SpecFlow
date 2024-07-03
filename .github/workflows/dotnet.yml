@@ -39,7 +39,7 @@ jobs:
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx" /p:CollectSpecFlowProjectInformation=true /p:JUnitXmlPath=./TestResults/TestExecution.json
 
       - name: Generate LivingDoc
-        run: livingdoc test-assembly DemoQA_Project_SpecFlow/bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t TestResults/TestExecution.json
+        run: livingdoc test-assembly /bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t TestResults/TestExecution.json
 
       - name: Upload LivingDoc as artifact
         if: always()
