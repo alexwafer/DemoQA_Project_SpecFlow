@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest
     permissions: write-all
 
     env:
@@ -23,35 +23,25 @@ jobs:
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.0.x  # Replace 'x' with the desired version      
+          dotnet-version: 6.0.x  # Replace 'x' with the desired version
+
+      - name: Install SpecFlow.Plus.LivingDocPlugin
+        run: dotnet add package SpecFlow.Plus.LivingDocPlugin --version <version>  # Replace <version> with the desired version of the package
 
       - name: Dotnet build
-        run: dotnet build DemoQA_Project_SpecFlow.sln 
+        run: dotnet build DemoQA_Project_SpecFlow.sln
 
       - name: Set executable permission for Selenium Manager
         run: |
           chmod +x $(find . -name selenium-manager -type f)
 
-      - name: Install dotnet-livingdoc global tool
-        run: dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
-
-      - name: Run tests and generate LivingDoc
-        run: |
-          dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
-          dotnet livingdoc test-assembly "DemoQA_Project_SpecFlow.dll" --output ./LivingDoc
-
-      - name: Upload test evidence as artifact
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: SuiteResults
-          path: |
-            DemoQA_Project_SpecFlow/bin/Debug/net6.0/LivingDoc
+      - name: Run tests with LivingDoc integration
+        run: dotnet test DemoQA_Project_SpecFlow.csproj --logger "trx;LogFileName=testresults.trx" /p:CollectSpecFlowProjectInformation=true /p:GenerateSpecFlowLivingDoc=true /p:LivingDocOutputFormat=html
 
       - name: Upload LivingDoc as artifact
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: LivingDoc
+          name: LivingDocResults
           path: |
-            LivingDoc
+            DemoQA_Project_SpecFlow/bin/Debug/net6.0/LivingDoc  # Update with the actual path where LivingDoc generates HTML output
