@@ -3,7 +3,6 @@ Feature: TextBoxFeature
 
 A short summary of the feature
 
-@tag1
 Scenario Outline: TextBoxScenario
 	Given Home page was displayed
 	And Test data was successfully loaded
