@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,13 +30,17 @@ namespace DemoQA_Project_SpecFlow.PageObject.formObject
         public string Year { get; private set; }
         public IList<string> ActualPracticeFormValues { get; private set; }
 
+        public PracticeFormObject() 
+        {
+
+        }
         public PracticeFormObject(Dictionary<string, string> Hash)
         {
             PopulateObject(Hash);
             SplitPropertiesIntoSeparateLists();
             PrepareActualResultsIntoList(Hash);
         }
-       
+
 
         public void SplitPropertiesIntoSeparateLists()
         {
@@ -47,6 +53,14 @@ namespace DemoQA_Project_SpecFlow.PageObject.formObject
         public void PrepareActualResultsIntoList(Dictionary<string, string> Hash)
         {
             ActualPracticeFormValues = Hash.Values.ToList();
+            Subjects.ToList().ForEach(subject => ActualPracticeFormValues.Add(subject));
+            Hobbies.ToList().ForEach(hobby => ActualPracticeFormValues.Add(hobby));
+            ActualPracticeFormValues.Where(element => element.Contains(",")).ToList().ForEach(result => ActualPracticeFormValues.Remove(result));
+        }
+
+        public void PrepareActualResultsIntoList(Table table)
+        {
+            ActualPracticeFormValues = table.Rows.Select(row => row.ToString()).ToList();
             Subjects.ToList().ForEach(subject => ActualPracticeFormValues.Add(subject));
             Hobbies.ToList().ForEach(hobby => ActualPracticeFormValues.Add(hobby));
             ActualPracticeFormValues.Where(element => element.Contains(",")).ToList().ForEach(result => ActualPracticeFormValues.Remove(result));

@@ -33,13 +33,22 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions.PracticeFormSteps
 
         }
 
-
-
-        [When("I submit form from site")]
-        public void ThenISubmitFormFromSite()
+        [When(@"I fill the entire form with the following details")]
+        public void WhenIFillTheEntireFormWithTheFollowingDetails(Table table)
         {
-            PracticeFormPage.Submit();
+            PracticeFormPage = new PracticeFormPage(DriverInstance.Driver);
+            var data = table.CreateInstance<PracticeFormObject>();
+            PracticeFormPage.CompleteFields(data);
         }
+
+        [Then(@"I validate all the entered fields from form page")]
+        public void ThenIValidateAllTheEnteredFieldsFromFormPage(Table table)
+        {
+            
+            var data = table.CreateInstance<PracticeFormObject>();
+            PracticeFormPage.ValidateValues(data);
+        }
+
 
     }
 }

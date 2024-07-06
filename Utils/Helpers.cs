@@ -71,7 +71,7 @@ namespace DemoQA_Project_SpecFlow.Utils
         }
 
 
-        public void fillWithActions(IWebElement Element, string text)
+        public void FillWithActions(IWebElement Element, string text)
         {
 
             Actions action = new Actions(Driver);

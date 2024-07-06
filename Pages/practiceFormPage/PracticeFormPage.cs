@@ -1,4 +1,5 @@
-﻿using DemoQA_Project_SpecFlow.PageObject.formObject;
+﻿using DemoQA_Project_SpecFlow.loggerUtility;
+using DemoQA_Project_SpecFlow.PageObject.formObject;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechTalk.SpecFlow;
 
 namespace DemoQA_Project_SpecFlow.Pages
 {
@@ -28,11 +30,12 @@ namespace DemoQA_Project_SpecFlow.Pages
         private IWebElement SportsElement => Driver.FindElement(By.CssSelector("label[for='hobbies-checkbox-1']"));
         private IWebElement ReadingElement => Driver.FindElement(By.CssSelector("label[for='hobbies-checkbox-2']"));
         private IWebElement MusicElement => Driver.FindElement(By.CssSelector("label[for='hobbies-checkbox-3']"));
-        private IWebElement StateElement => Driver.FindElement(By.Id("react-select-3-input"));
-        private IWebElement CityElement => Driver.FindElement(By.Id("city"));
+        private IWebElement StateElement => Driver.FindElement(By.XPath("//div[@id='state']//input"));
+        private IWebElement CityElement => Driver.FindElement(By.XPath("//div[@id='city']//input"));
 
         private IWebElement MonthSelector => Driver.FindElement(By.ClassName("react-datepicker__month-select"));
         private IWebElement DateOfBirthSelector => Driver.FindElement(By.Id("dateOfBirthInput"));
+        private IWebElement userForm => Driver.FindElement(By.ClassName("menu-list"));
         private IWebElement YearSelector => Driver.FindElement(By.ClassName("react-datepicker__year-select"));
         private IWebElement DaysSelector => Driver.FindElement(By.XPath("//div[@class='react-datepicker__month']/div/div"));
 
@@ -108,9 +111,9 @@ namespace DemoQA_Project_SpecFlow.Pages
         public PracticeFormPage FillDateOfBirth(string month, string year, string day)
         {          
             Helpers.ClickOnElement(DateOfBirthSelector);
-            Helpers.SelectByText(MonthSelector, month);
-            Helpers.SelectByText(YearSelector, year);
-            Driver.FindElements(By.XPath("//div[@class='react-datepicker__month']/div/div"))
+            if(!String.IsNullOrEmpty(month)) Helpers.SelectByText(MonthSelector, month);
+            if(!String.IsNullOrEmpty(year)) Helpers.SelectByText(YearSelector, year);
+            if(!String.IsNullOrEmpty(day)) Driver.FindElements(By.XPath("//div[@class='react-datepicker__month']/div/div"))
                 .Where(element => element.GetAttribute("aria-label").Contains(month + " " + day))
                 .ToList()
                 .ForEach(result =>
@@ -118,6 +121,7 @@ namespace DemoQA_Project_SpecFlow.Pages
                     Helpers.HoverElement(result);
                     Helpers.ClickOnElement(result);
                 });
+            DateOfBirthSelector.SendKeys(Keys.Escape);
             return this;
         }
 
@@ -129,13 +133,16 @@ namespace DemoQA_Project_SpecFlow.Pages
         public void FillState(string state)
         {
             Helpers.ScrollBy(500);
-            Helpers.fillWithActions(StateElement, state);
- 
+            Helpers.FillElement(StateElement, state);
+            Helpers.FillElement(StateElement, Keys.Enter);
+
+
         }
 
         public void FillCity(string city)
         {
-            Helpers.fillWithActions(CityElement, city);
+            Helpers.FillElement(CityElement, city);
+            Helpers.FillElement(CityElement, Keys.Enter);
         }
 
         public void Submit()
@@ -147,19 +154,50 @@ namespace DemoQA_Project_SpecFlow.Pages
         public PracticeFormPage ValidateEnteredValues(PracticeFormObject practiceFormObject)
         {
             Helpers.ElementIsPresent(ThankYouMessageSelector);
+            LoggerUtility.Info($"The user waits for presence of ThankYouMessageSelector field");
             int countValidations = -1;
-            IList<IWebElement> TableValues = Driver.FindElements(By.XPath("//div[@class='table-responsive']//table//tr/td[2]"));
+            IList<IWebElement> TableValues = Driver.FindElements(By.XPath("//table//tr/td[2]"));
             practiceFormObject.ActualPracticeFormValues.ToList()
                 .ForEach(itemValue => TableValues
-                .Where(actualResult => actualResult.Text.Contains(itemValue) && !string.IsNullOrEmpty(actualResult.Text))
+                .Where(actualResult => actualResult.Text.Contains(itemValue) && actualResult.Text.Length > 0)
                 .ToList()
                 .ForEach(result =>
                 {
                     Assert.IsTrue(result.Text.Contains(itemValue));
-                    countValidations ++;
+                    countValidations += 1;
                 }));
             Assert.IsTrue(practiceFormObject.ActualPracticeFormValues.Count == countValidations, "Not all values were displayed into validation form table..");
             return this;
+        }
+
+        public void ValidateValues(PracticeFormObject practiceFormObject)
+        {
+            IWebElement tableValues = Driver.FindElement(By.ClassName("modal-body"));
+
+            string fullName = practiceFormObject.FirstName + " " + practiceFormObject.LastName;
+            string stateAndCity = practiceFormObject.State + " " + practiceFormObject.City;
+
+
+            string rowContent = tableValues.Text;
+
+            Assert.True(rowContent.Contains(fullName));
+            Assert.True(rowContent.Contains(practiceFormObject.UserEmail));
+            Assert.True(rowContent.Contains(practiceFormObject.Gender));
+            Assert.True(rowContent.Contains(practiceFormObject.UserNumber));
+            Assert.True(rowContent.Contains(practiceFormObject.Day));
+            Assert.True(rowContent.Contains(practiceFormObject.Year));
+            Assert.True(rowContent.Contains(practiceFormObject.Month));
+            
+            foreach(var item in practiceFormObject.Subjects)
+            {
+                Assert.True(rowContent.Contains(item));
+            }
+            foreach (var item in practiceFormObject.Hobbies)
+            {
+                Assert.True(rowContent.Contains(item));
+            }
+            Assert.True(rowContent.Contains(practiceFormObject.CurrentAddress));
+            Assert.True(rowContent.Contains(stateAndCity));    
         }
     }
 }
