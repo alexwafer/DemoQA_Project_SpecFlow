@@ -24,6 +24,7 @@ Scenario Outline: Navigate to PracticeFormPage and fill the entire form with inv
 	And I fill the entire form with the following details
 	| FirstName   | LastName   | UserEmail   | UserNumber   | CurrentAddress   | Gender   | Hobbies   | Subjects    | Day    | Month   | Year   | State   | City   |
 	| <FirstName> | <LastName> | <UserEmail> | <UserNumber> | <CurrentAddress> | <Gender> | <Hobbies> | <Subjects>  | <Day>  | <Month> | <Year> | <State> | <City> |
+	And I subbmit form
 	Then I validate all the entered fields from form page
 	| FirstName   | LastName   | UserEmail   | UserNumber   | CurrentAddress   | Gender   | Hobbies   | Subjects    | Day    | Month   | Year   | State   | City   |
 	| <FirstName> | <LastName> | <UserEmail> | <UserNumber> | <CurrentAddress> | <Gender> | <Hobbies> | <Subjects>  | <Day>  | <Month> | <Year> | <State> | <City> |

@@ -41,6 +41,14 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions.PracticeFormSteps
             PracticeFormPage.CompleteFields(data);
         }
 
+        [When(@"I subbmit form")]
+        public void WhenISubbmitForm()
+        {
+            PracticeFormPage = new PracticeFormPage(DriverInstance.Driver);
+            PracticeFormPage.Submit();
+            
+        }
+
         [Then(@"I validate all the entered fields from form page")]
         public void ThenIValidateAllTheEnteredFieldsFromFormPage(Table table)
         {

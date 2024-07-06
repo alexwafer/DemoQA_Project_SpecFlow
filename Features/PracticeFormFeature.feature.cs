@@ -255,6 +255,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 24
  testRunner.And("I fill the entire form with the following details", ((string)(null)), table5, "And ");
 #line hidden
+#line 27
+ testRunner.And("I subbmit form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
@@ -283,7 +286,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", year),
                             string.Format("{0}", state),
                             string.Format("{0}", city)});
-#line 27
+#line 28
  testRunner.Then("I validate all the entered fields from form page", ((string)(null)), table6, "Then ");
 #line hidden
             }
@@ -297,7 +300,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PracticeFormScenario", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 38
+#line 39
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -307,23 +310,23 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 39
+#line 40
   testRunner.Given("Home page was displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "key"});
                 table7.AddRow(new string[] {
                             "resources.practiceFormResource.PracticeFormResource"});
-#line 40
+#line 41
   testRunner.And("Test data was successfully loaded", ((string)(null)), table7, "And ");
 #line hidden
-#line 43
+#line 44
   testRunner.When("I click on Forms menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 44
+#line 45
   testRunner.And("I click on Practice Form subMenu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 45
+#line 46
   testRunner.And("I fill the form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
