@@ -17,7 +17,7 @@ Scenario Outline: Navigate to PracticeFormPage and fill the entire form with val
 		| FirstName | LastName | UserEmail           | UserNumber | CurrentAddress   |Gender | Hobbies      | Subjects | Day | Month    | Year | State | City  |
 		| alex      | rosca    | alexrosca@yahoo.com | 1234567890 | str. calarasilor |Male   | Sports,Music | English  | 15  | November | 1998 | NCR   | Delhi |
 
-Scenario Outline: Navigate to PracticeFormPage and fill the entire form with invalid values
+Scenario Outline: Navigate to PracticeFormPage and fill the entire form with multiple valid values
 	Given Home page was displayed
 	When I click on Forms menu
 	And I click on Practice Form subMenu
@@ -34,7 +34,6 @@ Scenario Outline: Navigate to PracticeFormPage and fill the entire form with inv
 		| alex      | rosca    | test@mail.com       | 1234567855 | str.Iorga      | Male   | Sports,Music | English  | 15  |          | 1998 | NCR   | Delhi |
 		| alex      | dorha    | mail@yahoo.com      | 1234567890 | str.alex       | Female |   Sports     | Math     | 10  | December | 2000 | NCR   | Delhi |
 		| cristain  |   test   | sandumoca@yahoo.com | 1234512311 |   asda         | Other  |   Music      | Arts     | 20  |          | 1995 | NCR   | Delhi |
-		|           |          |                     |            |                | Male   |   Reading    | Math     |     |  March   |      |Haryana| Karnal|
 
 	Scenario: PracticeFormScenario
 		Given Home page was displayed
