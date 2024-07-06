@@ -2,7 +2,6 @@
 Feature: PracticeForm
 // renuntat la astea lasat doar ultimul 
 
-@JIRA-123
 Scenario Outline: Navigate to PracticeFormPage and fill the entire form with valid values
 	Given Home page was displayed
 	When I click on Forms menu
