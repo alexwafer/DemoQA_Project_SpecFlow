@@ -119,7 +119,7 @@ namespace DemoQA_Project_SpecFlow.Pages
                 .ForEach(result =>
                 {
                     Helpers.HoverElement(result);
-                    Helpers.ClickOnElement(result);
+                    Helpers.ClickWithJS(result);
                 });
             DateOfBirthSelector.SendKeys(Keys.Escape);
             return this;
