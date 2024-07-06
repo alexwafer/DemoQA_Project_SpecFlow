@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       suite:
-        description: 'Choose suite: FeaturesSuite, RegressionSuite'
+        description: 'Choose suite: FeaturesSuite, RegressionSuite, PracticeFormSuite'
         required: true
-        default: FeaturesSuite
+        default: PracticeFormSuite
 
 jobs:
   build:
