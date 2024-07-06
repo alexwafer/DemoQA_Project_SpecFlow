@@ -87,6 +87,7 @@ Table heads trebuie sa fie la fel pentru a prelua datele
 2. executam comanda: livingdoc test-assembly numeProiect(DemoQA_Project_SpecFlow).dll -t TestExecution.json
 3. livingdoc.html
 
+livingdoc test-assembly DemoQA_Project_SpecFlow.dll -t TestExecution.json
 
 2. livingdoc test-assembly DemoQA_Project_SpecFlow.dll -t TestExecution.json
 ----------------------------------------------------Comanda de generare LivigDoc--------------------------------------------

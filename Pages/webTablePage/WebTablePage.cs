@@ -10,7 +10,8 @@ namespace DemoQA_Project_SpecFlow.Pages.webTablePage
         {
         }
 
-        private IWebElement AddButton => Driver.FindElement(By.Id("addNewRecordButton"));
+        private string NewRecordButton = "addNewRecordButton";
+        //private IWebElement AddButton => Driver.FindElement(By.Id("addNewRecordButton"));
         private IWebElement FirstNameElement => Driver.FindElement(By.Id("firstName"));
         private IWebElement LastNameElement => Driver.FindElement(By.Id("lastName"));
         private IWebElement EmailElement => Driver.FindElement(By.Id("userEmail"));
@@ -29,7 +30,7 @@ namespace DemoQA_Project_SpecFlow.Pages.webTablePage
 
         public void addEntry(WebTableObject webTableObject)
         {
-            Helpers.ClickOnElement(AddButton);
+            Helpers.ClickWithJS(NewRecordButton);
             Helpers.ClearAndFillElement(FirstNameElement, webTableObject.FirstName);
             Helpers.ClearAndFillElement(LastNameElement, webTableObject.LastName);
             Helpers.ClearAndFillElement(EmailElement, webTableObject.Email);
