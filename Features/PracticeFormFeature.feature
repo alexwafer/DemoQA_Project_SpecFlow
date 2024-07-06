@@ -1,4 +1,4 @@
-﻿@RegressionSuite @PracticeFormSuite
+﻿@RegressionSuite 
 Feature: PracticeForm
 // renuntat la astea lasat doar ultimul 
 
@@ -17,6 +17,7 @@ Scenario Outline: Navigate to PracticeFormPage and fill the entire form with val
 		| FirstName | LastName | UserEmail           | UserNumber | CurrentAddress   |Gender | Hobbies      | Subjects | Day | Month    | Year | State | City  |
 		| alex      | rosca    | alexrosca@yahoo.com | 1234567890 | str. calarasilor |Male   | Sports,Music | English  | 15  | November | 1998 | NCR   | Delhi |
 
+@PracticeFormValidScenarios
 Scenario Outline: Navigate to PracticeFormPage and fill the entire form with multiple valid values
 	Given Home page was displayed
 	When I click on Forms menu

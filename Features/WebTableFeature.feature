@@ -2,7 +2,7 @@
 Feature: WebTableFeature
 
 Completes the webTable page 
-@tag1
+
 Scenario Outline: WebTableScenario
 	Given Home page was displayed
 	And Test data was successfully loaded

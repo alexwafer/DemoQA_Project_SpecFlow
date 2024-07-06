@@ -1,9 +1,9 @@
-﻿@RegressionSuite @FeaturesSuite
+﻿@RegressionSuite @SmokeSuite
 Feature: AltertsFeature
 
 Interacts with Alert page
 
-@tag1
+
 Scenario: AlertsScenario
 	Given Test data was successfully loaded
 	|						key						     |

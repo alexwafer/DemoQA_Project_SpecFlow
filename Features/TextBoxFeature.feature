@@ -1,4 +1,4 @@
-﻿@RegressionSuite @FeaturesSuite
+﻿@RegressionSuite @SmokeSuite
 Feature: TextBoxFeature
 
 A short summary of the feature
