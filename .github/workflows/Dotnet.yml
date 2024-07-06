@@ -23,23 +23,28 @@ jobs:
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.0.x  # Replace 'x' with the desired version      
+          dotnet-version: 6.0.x  # Replace 'x' with the desired version
 
-      - name: Dotnet build
-        run: dotnet build DemoQA_Project_SpecFlow.sln 
+      - name: Build project
+        run: dotnet build DemoQA_Project_SpecFlow.csproj
 
       - name: Set executable permission for Selenium Manager
         run: |
           chmod +x $(find . -name selenium-manager -type f)
           
-      - name: Run tests
-        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
+      - name: Install LivingDoc
+        run: |
+          dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
 
-      - name: Upload test evidence as artifact
+      - name: Run tests and generate JSON results
+        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx" /p:CollectSpecFlowProjectInformation=true /p:JUnitXmlPath=./TestResults/TestExecution.json
+
+      - name: Generate LivingDoc
+        run: livingdoc test-assembly /home/runner/work/DemoQA_Project_SpecFlow/DemoQA_Project_SpecFlow/bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t TestResults/TestExecution.json
+
+      - name: Upload LivingDoc as artifact
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: SuiteResults
-          path: |
-            DemoQA_Project_SpecFlow/logs
-            DemoQA_Project_SpecFlow/reports
+          name: LivingDocResults
+          path: TestResults  # Adjust this path to match the actual location where LivingDoc generates HTML output
