@@ -148,7 +148,7 @@ namespace DemoQA_Project_SpecFlow.Pages
         public void Submit()
         {
             ((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollBy(0,500)");
-            SubmitForm.Submit();
+            Helpers.ClickWithJS(SubmitForm);
         }
 
         public PracticeFormPage ValidateEnteredValues(PracticeFormObject practiceFormObject)
