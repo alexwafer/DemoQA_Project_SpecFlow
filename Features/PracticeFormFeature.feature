@@ -1,4 +1,4 @@
-﻿@PracticeFormSuite
+﻿@RegressionSuite @PracticeFormSuite
 Feature: PracticeForm
 // renuntat la astea lasat doar ultimul 
 
