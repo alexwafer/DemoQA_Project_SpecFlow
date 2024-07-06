@@ -38,10 +38,12 @@ jobs:
 
       - name: Run tests and generate TRX results
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx"
-
+      
+      - name: Convert TRX to JSON
+        run: npx trx2json ./TestResults/testresults.trx > ./TestResults/testresults.json
         
       - name: Generate LivingDoc
-        run: livingdoc test-assembly ./bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t ./TestResults/testresults.trx
+        run: livingdoc test-assembly ./bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t ./TestResults/testresults.json
 
       - name: Upload LivingDoc as artifact
         if: always()
