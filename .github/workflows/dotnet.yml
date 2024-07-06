@@ -39,10 +39,23 @@ jobs:
       - name: Run tests and generate TRX results
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx"
       
-      - name: Install trx2json
-        run: npm install -g trx2json
       - name: Convert TRX to JSON
-        run: npx trx2json ./TestResults/testresults.trx > ./TestResults/Testresultss.json
+        run: |
+         $trxFile = "./TestResults/testresults.trx"
+         $jsonFile = "./TestResults/Testresultss.json"
+         [xml]$trx = Get-Content $trxFile
+         $testResults = @()
+         foreach ($testMethod in $trx.TestRun.TestDefinitions.TestMethod) {
+         $testResult = @{
+         Name = $testMethod.Name
+         Outcome = $testMethod.Result.Outcome
+         Duration = [TimeSpan]::Parse($testMethod.Result.Duration)
+         StartTime = $testMethod.StartTime
+         EndTime = $testMethod.EndTime
+         }
+         $testResults += $testResult
+         }
+         $testResults | ConvertTo-Json | Set-Content $jsonFile
 
       - name: Generate LivingDoc
         run: livingdoc test-assembly ./bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t ./TestResults/Testresultss.json
