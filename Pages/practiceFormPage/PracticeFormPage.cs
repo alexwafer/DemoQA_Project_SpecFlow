@@ -77,9 +77,9 @@ namespace DemoQA_Project_SpecFlow.Pages
 
         public void ClickOnGender(PracticeFormObject practiceFormObject)
         {
-            if (practiceFormObject.Gender.Equals("Male")) MaleGennderElement.Click();
-            else if (practiceFormObject.Gender.Equals("Female")) FemaleGennderElement.Click();
-            else if (practiceFormObject.Gender.Equals("Other")) OtherGennderElement.Click();
+            if (practiceFormObject.Gender.Equals("Male")) Helpers.ClickWithJS(MaleGennderElement);
+            else if (practiceFormObject.Gender.Equals("Female")) Helpers.ClickWithJS(FemaleGennderElement);
+            else if (practiceFormObject.Gender.Equals("Other")) Helpers.ClickWithJS(OtherGennderElement);
         }
         public void FillPhoneNumber(string PhoneNumber)
         {

@@ -62,6 +62,12 @@ namespace DemoQA_Project_SpecFlow.Utils
             JsExecutor.ExecuteScript("arguments[0].click();", Element);
 
         }
+
+        public void ClickWithJS(IWebElement Element)
+        {
+            ElementIsPresent(Element);
+            JsExecutor.ExecuteScript("arguments[0].click();", Element);
+        }
         public void SelectByText(IWebElement Identificator, string Value)
         {
             ElementIsPresent(Identificator);
