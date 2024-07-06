@@ -110,7 +110,7 @@ namespace DemoQA_Project_SpecFlow.Pages
 
         public PracticeFormPage FillDateOfBirth(string month, string year, string day)
         {          
-            Helpers.ClickOnElement(DateOfBirthSelector);
+            Helpers.ClickWithJS(DateOfBirthSelector);
             if(!String.IsNullOrEmpty(month)) Helpers.SelectByText(MonthSelector, month);
             if(!String.IsNullOrEmpty(year)) Helpers.SelectByText(YearSelector, year);
             if(!String.IsNullOrEmpty(day)) Driver.FindElements(By.XPath("//div[@class='react-datepicker__month']/div/div"))
