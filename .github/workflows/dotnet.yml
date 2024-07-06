@@ -40,6 +40,7 @@ jobs:
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx"
       
       - name: Convert TRX to JSON
+        shell: pwsh
         run: |
          $trxFile = "./TestResults/testresults.trx"
          $jsonFile = "./TestResults/Testresultss.json"
