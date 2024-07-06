@@ -43,7 +43,7 @@ jobs:
         shell: pwsh
         run: |
          $trxFile = "./TestResults/testresults.trx"
-         $jsonFile = "./TestResults/Testresultss.json"
+         $jsonFile = "./TestResults/Testresults.json"
          [xml]$trx = Get-Content $trxFile
          $testResults = @()
          foreach ($testMethod in $trx.TestRun.TestDefinitions.TestMethod) {
@@ -59,7 +59,7 @@ jobs:
          $testResults | ConvertTo-Json | Set-Content $jsonFile
 
       - name: Generate LivingDoc
-        run: livingdoc test-assembly ./bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t ./TestResults/Testresultss.json
+        run: livingdoc test-assembly ./bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t ./TestResults/Testresults.json
 
       - name: Upload LivingDoc as artifact
         if: always()
