@@ -36,9 +36,12 @@ jobs:
         run: |
           dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
 
-      - name: Run tests and generate JSON results
+      - name: Run tests and generate TRX results
         run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx"
 
+      - name: Convert TRX to JSON
+        run: trx2json ./TestResults/testresults.trx -o ./TestResults/testresults.json
+        
       - name: Generate LivingDoc
         run: livingdoc test-assembly ./bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t ./TestResults/testresults.trx
 
