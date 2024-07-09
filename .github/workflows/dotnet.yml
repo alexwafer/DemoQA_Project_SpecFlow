@@ -37,33 +37,14 @@ jobs:
           dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
 
       - name: Run tests and generate TRX results
-        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} --logger "trx;LogFileName=testresults.trx"
+        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} 
       
-      - name: Convert TRX to JSON
-        shell: pwsh
-        run: |
-         $trxFile = "./TestResults/testresults.trx"
-         $jsonFile = "./TestResults/Testresults.json"
-         [xml]$trx = Get-Content $trxFile
-         $testResults = @()
-         foreach ($testMethod in $trx.TestRun.TestDefinitions.TestMethod) {
-         $testResult = @{
-         Name = $testMethod.Name
-         Outcome = $testMethod.Result.Outcome
-         Duration = [TimeSpan]::Parse($testMethod.Result.Duration)
-         StartTime = $testMethod.StartTime
-         EndTime = $testMethod.EndTime
-         }
-         $testResults += $testResult
-         }
-         $testResults | ConvertTo-Json | Set-Content $jsonFile
-
       - name: Generate LivingDoc
-        run: livingdoc test-assembly ./bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t ./TestResults/Testresults.json
+        run: livingdoc test-assembly ./bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t TestExecution.json 
 
       - name: Upload LivingDoc as artifact
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: LivingDocResults
-          path: TestResults  # Adjust this path to match the actual location where LivingDoc generates HTML output
+          path: ./bin/Debug/net6.0  # Adjust this path to match the actual location where LivingDoc generates HTML output
