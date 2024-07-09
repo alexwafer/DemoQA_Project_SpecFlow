@@ -22,7 +22,7 @@ namespace DemoQA_Project_SpecFlow.Features
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AltertsFeature")]
     [NUnit.Framework.CategoryAttribute("RegressionSuite")]
-    [NUnit.Framework.CategoryAttribute("FeaturesSuite")]
+    [NUnit.Framework.CategoryAttribute("SmokeSuite")]
     public partial class AltertsFeatureFeature
     {
         
@@ -30,7 +30,7 @@ namespace DemoQA_Project_SpecFlow.Features
         
         private static string[] featureTags = new string[] {
                 "RegressionSuite",
-                "FeaturesSuite"};
+                "SmokeSuite"};
         
 #line 1 "AltertsFeature.feature"
 #line hidden
@@ -79,11 +79,9 @@ namespace DemoQA_Project_SpecFlow.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AlertsScenario")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
         public void AlertsScenario()
         {
-            string[] tagsOfScenario = new string[] {
-                    "tag1"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AlertsScenario", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7

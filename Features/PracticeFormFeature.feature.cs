@@ -21,14 +21,14 @@ namespace DemoQA_Project_SpecFlow.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("PracticeForm")]
-    [NUnit.Framework.CategoryAttribute("PracticeFormSuite")]
+    [NUnit.Framework.CategoryAttribute("RegressionSuite")]
     public partial class PracticeFormFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = new string[] {
-                "PracticeFormSuite"};
+                "RegressionSuite"};
         
 #line 1 "PracticeFormFeature.feature"
 #line hidden
@@ -182,14 +182,21 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Navigate to PracticeFormPage and fill the entire form with invalid values")]
+        [NUnit.Framework.DescriptionAttribute("Navigate to PracticeFormPage and fill the entire form with multiple valid values")]
+        [NUnit.Framework.CategoryAttribute("PracticeFormValidScenarios")]
         [NUnit.Framework.TestCaseAttribute("alex", "rosca", "test@mail.com", "1234567855", "str.Iorga", "Male", "Sports,Music", "English", "15", "", "1998", "NCR", "Delhi", null)]
         [NUnit.Framework.TestCaseAttribute("alex", "dorha", "mail@yahoo.com", "1234567890", "str.alex", "Female", "Sports", "Math", "10", "December", "2000", "NCR", "Delhi", null)]
         [NUnit.Framework.TestCaseAttribute("cristain", "test", "sandumoca@yahoo.com", "1234512311", "asda", "Other", "Music", "Arts", "20", "", "1995", "NCR", "Delhi", null)]
-        [NUnit.Framework.TestCaseAttribute("", "", "", "", "", "Male", "Reading", "Math", "", "March", "", "Haryana", "Karnal", null)]
-        public void NavigateToPracticeFormPageAndFillTheEntireFormWithInvalidValues(string firstName, string lastName, string userEmail, string userNumber, string currentAddress, string gender, string hobbies, string subjects, string day, string month, string year, string state, string city, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("cristain", "test", "sandumoca@yahoo.com", "1234512311", "asda", "Other", "Music", "Arts", "20", "", "", "NCR", "Delhi", null)]
+        public void NavigateToPracticeFormPageAndFillTheEntireFormWithMultipleValidValues(string firstName, string lastName, string userEmail, string userNumber, string currentAddress, string gender, string hobbies, string subjects, string day, string month, string year, string state, string city, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "PracticeFormValidScenarios"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("FirstName", firstName);
             argumentsOfScenario.Add("LastName", lastName);
@@ -204,8 +211,8 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Year", year);
             argumentsOfScenario.Add("State", state);
             argumentsOfScenario.Add("City", city);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Navigate to PracticeFormPage and fill the entire form with invalid values", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 20
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Navigate to PracticeFormPage and fill the entire form with multiple valid values", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 21
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -215,13 +222,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 21
+#line 22
  testRunner.Given("Home page was displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 22
+#line 23
  testRunner.When("I click on Forms menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 23
+#line 24
  testRunner.And("I click on Practice Form subMenu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -252,10 +259,10 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", year),
                             string.Format("{0}", state),
                             string.Format("{0}", city)});
-#line 24
+#line 25
  testRunner.And("I fill the entire form with the following details", ((string)(null)), table5, "And ");
 #line hidden
-#line 27
+#line 28
  testRunner.And("I subbmit form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -286,7 +293,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", year),
                             string.Format("{0}", state),
                             string.Format("{0}", city)});
-#line 28
+#line 29
  testRunner.Then("I validate all the entered fields from form page", ((string)(null)), table6, "Then ");
 #line hidden
             }
@@ -300,7 +307,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PracticeFormScenario", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 39
+#line 40
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -310,23 +317,23 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 40
+#line 41
   testRunner.Given("Home page was displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "key"});
                 table7.AddRow(new string[] {
                             "resources.practiceFormResource.PracticeFormResource"});
-#line 41
+#line 42
   testRunner.And("Test data was successfully loaded", ((string)(null)), table7, "And ");
 #line hidden
-#line 44
+#line 45
   testRunner.When("I click on Forms menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 45
+#line 46
   testRunner.And("I click on Practice Form subMenu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 46
+#line 47
   testRunner.And("I fill the form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

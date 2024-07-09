@@ -77,11 +77,9 @@ namespace DemoQA_Project_SpecFlow.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("WebTableScenario")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
         public void WebTableScenario()
         {
-            string[] tagsOfScenario = new string[] {
-                    "tag1"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("WebTableScenario", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6

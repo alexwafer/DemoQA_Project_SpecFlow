@@ -35,6 +35,7 @@ Scenario Outline: Navigate to PracticeFormPage and fill the entire form with mul
 		| alex      | rosca    | test@mail.com       | 1234567855 | str.Iorga      | Male   | Sports,Music | English  | 15  |          | 1998 | NCR   | Delhi |
 		| alex      | dorha    | mail@yahoo.com      | 1234567890 | str.alex       | Female |   Sports     | Math     | 10  | December | 2000 | NCR   | Delhi |
 		| cristain  |   test   | sandumoca@yahoo.com | 1234512311 |   asda         | Other  |   Music      | Arts     | 20  |          | 1995 | NCR   | Delhi |
+		| cristain  |   test   | sandumoca@yahoo.com | 1234512311 |   asda         | Other  |   Music      | Arts     | 20  |          |      | NCR   | Delhi |
 
 	Scenario: PracticeFormScenario
 		Given Home page was displayed

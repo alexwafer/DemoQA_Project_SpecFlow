@@ -22,7 +22,7 @@ namespace DemoQA_Project_SpecFlow.Features
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("TextBoxFeature")]
     [NUnit.Framework.CategoryAttribute("RegressionSuite")]
-    [NUnit.Framework.CategoryAttribute("FeaturesSuite")]
+    [NUnit.Framework.CategoryAttribute("SmokeSuite")]
     public partial class TextBoxFeatureFeature
     {
         
@@ -30,7 +30,7 @@ namespace DemoQA_Project_SpecFlow.Features
         
         private static string[] featureTags = new string[] {
                 "RegressionSuite",
-                "FeaturesSuite"};
+                "SmokeSuite"};
         
 #line 1 "TextBoxFeature.feature"
 #line hidden
@@ -79,14 +79,12 @@ namespace DemoQA_Project_SpecFlow.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TextBoxScenario")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
         public void TextBoxScenario()
         {
-            string[] tagsOfScenario = new string[] {
-                    "tag1"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TextBoxScenario", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,23 +94,23 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 7
  testRunner.Given("Home page was displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "key"});
                 table8.AddRow(new string[] {
                             "resources.textBoxResource.TextBoxResource"});
-#line 9
+#line 8
  testRunner.And("Test data was successfully loaded", ((string)(null)), table8, "And ");
 #line hidden
-#line 12
+#line 11
  testRunner.When("I click on Elements menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 12
  testRunner.And("I click on Text Box subMenu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 13
  testRunner.Then("I fill TextBox Form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
