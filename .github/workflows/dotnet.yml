@@ -37,14 +37,14 @@ jobs:
           dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
 
       - name: Run tests and generate TRX results
-        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }} 
-      
+        run: dotnet test DemoQA_Project_SpecFlow.csproj --filter TestCategory=${{ github.event.inputs.suite }}
+
       - name: Generate LivingDoc
-        run: livingdoc test-assembly ./bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t /bin/Debug/net6.0/TestExecution.json 
+        run: livingdoc test-assembly ./bin/Debug/net6.0/DemoQA_Project_SpecFlow.dll -t $GITHUB_WORKSPACE/bin/Debug/net6.0/TestExecution.json
 
       - name: Upload LivingDoc as artifact
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: LivingDocResults
-          path: ./bin/Debug/net6.0  # Adjust this path to match the actual location where LivingDoc generates HTML output
+          path: $GITHUB_WORKSPACE/bin/Debug/net6.0/LivingDoc.html
