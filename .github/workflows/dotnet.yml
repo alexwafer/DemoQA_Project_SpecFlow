@@ -47,4 +47,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: LivingDocResults
-          path: $GITHUB_WORKSPACE/bin/Debug/net6.0/LivingDoc.html
+          path: $GITHUB_WORKSPACE/DemoQA_Project_SpecFlow/DemoQA_Project_SpecFlow/bin/Debug/net6.0/LivingDoc.html
