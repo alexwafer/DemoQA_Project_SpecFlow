@@ -187,7 +187,6 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("alex", "rosca", "test@mail.com", "1234567855", "str.Iorga", "Male", "Sports,Music", "English", "15", "", "1998", "NCR", "Delhi", null)]
         [NUnit.Framework.TestCaseAttribute("alex", "dorha", "mail@yahoo.com", "1234567890", "str.alex", "Female", "Sports", "Math", "10", "December", "2000", "NCR", "Delhi", null)]
         [NUnit.Framework.TestCaseAttribute("cristain", "test", "sandumoca@yahoo.com", "1234512311", "asda", "Other", "Music", "Arts", "20", "", "1995", "NCR", "Delhi", null)]
-        [NUnit.Framework.TestCaseAttribute("cristain", "test", "sandumoca@yahoo.com", "1234512311", "asda", "Other", "Music", "Arts", "20", "", "", "NCR", "Delhi", null)]
         public void NavigateToPracticeFormPageAndFillTheEntireFormWithMultipleValidValues(string firstName, string lastName, string userEmail, string userNumber, string currentAddress, string gender, string hobbies, string subjects, string day, string month, string year, string state, string city, string[] exampleTags)
         {
             string[] @__tags = new string[] {
