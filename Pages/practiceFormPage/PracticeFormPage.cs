@@ -48,9 +48,16 @@ namespace DemoQA_Project_SpecFlow.Pages
         public void CompleteFields(PracticeFormObject practiceFormObject)
         {
             FillFirstName(practiceFormObject.FirstName);
+            LoggerUtility.Info("The user completes firtName");
             FillLastName(practiceFormObject.LastName);
+            LoggerUtility.Info("The user completes lastName");
+
             FillEmail(practiceFormObject.UserEmail);
+            LoggerUtility.Info("The user completes user Email");
+
             ClickOnGender(practiceFormObject);
+            LoggerUtility.Info("The user completes gender");
+
             FillPhoneNumber(practiceFormObject.UserNumber);
             FillDateOfBirth(practiceFormObject.Month, practiceFormObject.Year, practiceFormObject.Day);
             FillSubjects(practiceFormObject.Subjects);
