@@ -1,13 +1,17 @@
 ﻿using DemoQA_Project_SpecFlow.Drivers;
 using DemoQA_Project_SpecFlow.Pages;
 using DemoQA_Project_SpecFlow.Utils;
+using log4net;
 using NUnit.Framework;
+using System.Reflection;
 
 namespace DemoQA_Project_SpecFlow.StepDefinitions
 {
     [Binding]
     public class HomeSteps : BaseSteps
     {
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public HomeSteps(ChromeBrowserService DriverInstance, FeatureContext FeatureContext, ScenarioContext ScenarioContext) 
             : base(DriverInstance, FeatureContext, ScenarioContext)
         { }
@@ -21,6 +25,7 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions
             HomePage = new HomePage(DriverInstance.Driver);
             Helpers = new Helpers(DriverInstance.Driver);
             Helpers.ClickWithJS(elementName);
+            logger.Info("The user clicks on " + elementName + " menu");
         }
 
         [Given("Home page was displayed")]

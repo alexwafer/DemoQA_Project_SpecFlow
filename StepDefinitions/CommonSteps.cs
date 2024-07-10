@@ -1,12 +1,15 @@
 ﻿using DemoQA_Project_SpecFlow.Drivers;
 using DemoQA_Project_SpecFlow.PageObject;
 using DemoQA_Project_SpecFlow.Pages;
+using log4net;
+using System.Reflection;
 
 namespace DemoQA_Project_SpecFlow.StepDefinitions
 {
     [Binding]
     public class CommonSteps : BaseSteps
     {
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public CommonSteps(ChromeBrowserService DriverInstance, FeatureContext FeatureContext, ScenarioContext ScenarioContext) 
             : base(DriverInstance, FeatureContext, ScenarioContext) { }
@@ -19,6 +22,7 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions
         {
             CommonPage = new CommonPage(DriverInstance.Driver);
             CommonPage.ClickOnElement(elementName);
+            logger.Info("The user clicks on " + elementName + " submenu");
         }
 
         [Given(@"Test data was successfully loaded")]
