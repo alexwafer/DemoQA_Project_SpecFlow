@@ -1,6 +1,5 @@
 ﻿@RegressionSuite 
 Feature: PracticeForm
-// renuntat la astea lasat doar ultimul 
 
 Scenario Outline: Navigate to PracticeFormPage and fill the entire form with valid values
 	Given Home page was displayed

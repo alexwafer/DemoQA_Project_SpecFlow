@@ -1,10 +1,12 @@
 ﻿using DemoQA_Project_SpecFlow.loggerUtility;
 using DemoQA_Project_SpecFlow.PageObject.formObject;
+using log4net;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
@@ -13,6 +15,7 @@ namespace DemoQA_Project_SpecFlow.Pages
 {
     public class PracticeFormPage : BasePage
     {
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public PracticeFormPage(IWebDriver driver) : base(driver)
         {
         }
@@ -46,9 +49,13 @@ namespace DemoQA_Project_SpecFlow.Pages
         public void CompleteFields(PracticeFormObject practiceFormObject)
         {
             FillFirstName(practiceFormObject.FirstName);
+            logger.Info("The user completes first name field");
             FillLastName(practiceFormObject.LastName);
+            logger.Info("The user completes last name field");
             FillEmail(practiceFormObject.UserEmail);
+            logger.Info("The user completes userEmail name field");
             ClickOnGender(practiceFormObject);
+            logger.Info("The user click on gender radiobox");
             FillPhoneNumber(practiceFormObject.UserNumber);
             FillDateOfBirth(practiceFormObject.Month, practiceFormObject.Year, practiceFormObject.Day);
             FillSubjects(practiceFormObject.Subjects);
