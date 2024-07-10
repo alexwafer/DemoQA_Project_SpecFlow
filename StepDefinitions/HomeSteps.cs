@@ -32,6 +32,8 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions
         public void ValidateHomePagePresence()
         {
             Assert.True(DriverInstance.Driver.Url.Equals("https://demoqa.com/"));
+            logger.Info("Home Page waas successfully displayed");
+
         }
     }
 }

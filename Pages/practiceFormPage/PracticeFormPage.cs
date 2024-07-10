@@ -15,6 +15,8 @@ namespace DemoQA_Project_SpecFlow.Pages
 {
     public class PracticeFormPage : BasePage
     {
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public PracticeFormPage(IWebDriver driver) : base(driver)
         {
         }
@@ -48,23 +50,27 @@ namespace DemoQA_Project_SpecFlow.Pages
         public void CompleteFields(PracticeFormObject practiceFormObject)
         {
             FillFirstName(practiceFormObject.FirstName);
-            LoggerUtility.Info("The user completes firtName");
+            logger.Info("The user completes Firt Name");
             FillLastName(practiceFormObject.LastName);
-            LoggerUtility.Info("The user completes lastName");
-
+            logger.Info("The user completes Last Name");
             FillEmail(practiceFormObject.UserEmail);
-            LoggerUtility.Info("The user completes user Email");
-
+            logger.Info("The user completes Email");
             ClickOnGender(practiceFormObject);
-            LoggerUtility.Info("The user completes gender");
-
+            logger.Info("The user clicks on Gender");
             FillPhoneNumber(practiceFormObject.UserNumber);
+            logger.Info("The user completes the Phone Number");
             FillDateOfBirth(practiceFormObject.Month, practiceFormObject.Year, practiceFormObject.Day);
+            logger.Info("The user completes the Date of Birth");
             FillSubjects(practiceFormObject.Subjects);
+            logger.Info("The user completes subjects");
             FillHobies(practiceFormObject);
+            logger.Info("The user clicks on desiered hobbies");
             FillAddress(practiceFormObject.CurrentAddress);
+            logger.Info("The user completes the Current Address");
             FillState(practiceFormObject.State);
+            logger.Info("The user selects the State");
             FillCity(practiceFormObject.City);
+            logger.Info("The user selects the City");
             Submit();
            
         }

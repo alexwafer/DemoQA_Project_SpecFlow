@@ -1,10 +1,12 @@
 ﻿using DemoQA_Project_SpecFlow.PageObject.autoCompleteObject;
 using DemoQA_Project_SpecFlow.PageObject.textBoxObject;
+using log4net;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +14,8 @@ namespace DemoQA_Project_SpecFlow.Pages.autoCompletePage
 {
     public class AutoCompletePage : BasePage
     {
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public AutoCompletePage(IWebDriver driver) : base(driver)
         {
         }
@@ -23,8 +27,12 @@ namespace DemoQA_Project_SpecFlow.Pages.autoCompletePage
         public void CompleteFields(AutoCompleteObject autoCompleteObject)
         {
             CompleteColor1(autoCompleteObject);
+            logger.Info("The user completes color field 1");
             CompleteColor2(autoCompleteObject);
-            validateFields(autoCompleteObject);
+            logger.Info("The user completes color field 1");
+            ValidateFields(autoCompleteObject);
+            logger.Info("All fields are validated");
+
         }
 
         public void CompleteColor1(AutoCompleteObject autoCompleteObject)
@@ -40,7 +48,7 @@ namespace DemoQA_Project_SpecFlow.Pages.autoCompletePage
             Helpers.CompleteWithFirstValue(Color2Field, autoCompleteObject.Color2);
         }
 
-        public void validateFields(AutoCompleteObject autoCompleteObject)
+        public void ValidateFields(AutoCompleteObject autoCompleteObject)
         {
             for (int i = 0; i < Color1Text.Count; i++)
             {

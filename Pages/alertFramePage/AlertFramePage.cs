@@ -21,13 +21,13 @@ namespace DemoQA_Project_SpecFlow.Pages.AlertFramePage
         public void ClickOnEveryAlertJS(AlertsObject alertFrameObject)
         {
             clickOnAlertOkJS();
-            LoggerUtility.Info("The user clicks on First Alert");
+            logger.Info("The user clicks on First Alert");
             alertWithDelayJS();
-            LoggerUtility.Info("The user clicks on Second Alert");
+            logger.Info("The user clicks on Second Alert");
             alertWithConfirmJS(alertFrameObject);
-            LoggerUtility.Info("The user clicks on Third Alert");
+            logger.Info("The user clicks on Third Alert");
             alertWithTextJS(alertFrameObject);
-            LoggerUtility.Info("The user clicks on Fourth Alert");
+            logger.Info("The user clicks on Fourth Alert");
         }
 
         public void clickOnAlertOkJS()

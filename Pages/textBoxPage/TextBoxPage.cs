@@ -1,9 +1,11 @@
 ﻿using DemoQA_Project_SpecFlow.PageObject.textBoxObject;
+using log4net;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow.CommonModels;
@@ -12,6 +14,8 @@ namespace DemoQA_Project_SpecFlow.Pages.TextBoxPage
 {
     public class TextBoxPage : BasePage
     {
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public TextBoxPage(IWebDriver driver) : base(driver)
         {
         }
@@ -26,11 +30,20 @@ namespace DemoQA_Project_SpecFlow.Pages.TextBoxPage
         public void CompleteForm(TextBoxObject textBoxObject)
         {
             FillFullName(textBoxObject);
+            logger.Info("The user completes the Full Name field");
             FillEmail(textBoxObject);
+            logger.Info("The user completes the Email");
+
             FillCurrentAddress(textBoxObject);
+            logger.Info("The user completes the Current Address");
+
             FillPermanentAddress(textBoxObject);
+            logger.Info("The user completes the Permanent Address");
             ValidateForm(textBoxObject);
+            logger.Info("The form is validated");
             SubmitForm();
+            logger.Info("The form is submited");
+
         }
 
         public void FillFullName(TextBoxObject textBoxObject)

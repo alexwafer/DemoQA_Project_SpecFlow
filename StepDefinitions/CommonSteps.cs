@@ -22,7 +22,7 @@ namespace DemoQA_Project_SpecFlow.StepDefinitions
         {
             CommonPage = new CommonPage(DriverInstance.Driver);
             CommonPage.ClickOnElement(elementName);
-            logger.Info("The user clicks on " + elementName + "submenu");
+            logger.Info("The user clicks on " + elementName + " submenu");
         }
 
         [Given(@"Test data was successfully loaded")]

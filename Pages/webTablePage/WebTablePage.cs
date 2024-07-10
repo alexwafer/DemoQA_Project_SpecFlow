@@ -1,11 +1,15 @@
 ﻿using DemoQA_Project_SpecFlow.PageObject.webTableObject;
+using log4net;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using System.Reflection;
 
 namespace DemoQA_Project_SpecFlow.Pages.webTablePage
 {
     public class WebTablePage : BasePage
     {
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public WebTablePage(IWebDriver driver) : base(driver)
         {
         }
@@ -31,14 +35,22 @@ namespace DemoQA_Project_SpecFlow.Pages.webTablePage
         public void addEntry(WebTableObject webTableObject)
         {
             Helpers.ClickWithJS(NewRecordButton);
+            logger.Info("The user clicks on Add Entry button field");
             Helpers.ClearAndFillElement(FirstNameElement, webTableObject.FirstName);
+            logger.Info("The user completes the First Name field");
             Helpers.ClearAndFillElement(LastNameElement, webTableObject.LastName);
+            logger.Info("The user completes the Last Name field");
             Helpers.ClearAndFillElement(EmailElement, webTableObject.Email);
+            logger.Info("The user completes the Email field");
             Helpers.ClearAndFillElement(AgeElement, webTableObject.Age);
+            logger.Info("The user completes the Age field");
             Helpers.ClearAndFillElement(SalaryElement, webTableObject.Salary);
+            logger.Info("The user completes the Salary field");
             Helpers.ClearAndFillElement(DepartamentElement, webTableObject.Departament);
-
+            logger.Info("The user completes the Departament field");
             Helpers.ClickOnElement(SubmitButton);
+            logger.Info("The user Submits the form");
+
         }
 
         public void validateTable(int actualRowsCount, WebTableObject webTableObject)
