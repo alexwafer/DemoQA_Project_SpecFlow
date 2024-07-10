@@ -15,7 +15,6 @@ namespace DemoQA_Project_SpecFlow.Pages
 {
     public class PracticeFormPage : BasePage
     {
-        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public PracticeFormPage(IWebDriver driver) : base(driver)
         {
         }
@@ -49,13 +48,9 @@ namespace DemoQA_Project_SpecFlow.Pages
         public void CompleteFields(PracticeFormObject practiceFormObject)
         {
             FillFirstName(practiceFormObject.FirstName);
-            logger.Info("The user completes first name field");
             FillLastName(practiceFormObject.LastName);
-            logger.Info("The user completes last name field");
             FillEmail(practiceFormObject.UserEmail);
-            logger.Info("The user completes userEmail name field");
             ClickOnGender(practiceFormObject);
-            logger.Info("The user click on gender radiobox");
             FillPhoneNumber(practiceFormObject.UserNumber);
             FillDateOfBirth(practiceFormObject.Month, practiceFormObject.Year, practiceFormObject.Day);
             FillSubjects(practiceFormObject.Subjects);
