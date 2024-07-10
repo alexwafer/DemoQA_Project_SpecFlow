@@ -29,7 +29,7 @@ namespace DemoQA_Project_SpecFlow.Pages.autoCompletePage
             CompleteColor1(autoCompleteObject);
             logger.Info("The user completes color field 1");
             CompleteColor2(autoCompleteObject);
-            logger.Info("The user completes color field 1");
+            logger.Info("The user completes color field 2");
             ValidateFields(autoCompleteObject);
             logger.Info("All fields are validated");
 
