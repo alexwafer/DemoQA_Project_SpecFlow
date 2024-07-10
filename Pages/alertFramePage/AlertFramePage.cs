@@ -1,9 +1,11 @@
 ﻿using DemoQA_Project_SpecFlow.loggerUtility;
 using DemoQA_Project_SpecFlow.PageObject.alertsObject;
+using log4net;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,19 +13,21 @@ namespace DemoQA_Project_SpecFlow.Pages.AlertFramePage
 {
     public class AlertFramePage : BasePage
     {
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public AlertFramePage(IWebDriver driver) : base(driver)
         { }
 
         public void ClickOnEveryAlertJS(AlertsObject alertFrameObject)
         {
             clickOnAlertOkJS();
-            LoggerUtility.Info("The user clicks on First Alert");
+            logger.Info("The user clicks on First Alert");
             alertWithDelayJS();
-            LoggerUtility.Info("The user clicks on Second Alert");
+            logger.Info("The user clicks on Second Alert");
             alertWithConfirmJS(alertFrameObject);
-            LoggerUtility.Info("The user clicks on Third Alert");
+            logger.Info("The user clicks on Third Alert");
             alertWithTextJS(alertFrameObject);
-            LoggerUtility.Info("The user clicks on Fourth Alert");
+            logger.Info("The user clicks on Fourth Alert");
         }
 
         public void clickOnAlertOkJS()
