@@ -50,23 +50,23 @@ namespace DemoQA_Project_SpecFlow.Pages
         public void CompleteFields(PracticeFormObject practiceFormObject)
         {
             FillFirstName(practiceFormObject.FirstName);
-            logger.Info("The user completes Firt Name");
+            logger.Info("The user completes Firt Name field");
             FillLastName(practiceFormObject.LastName);
-            logger.Info("The user completes Last Name");
+            logger.Info("The user completes Last Name field");
             FillEmail(practiceFormObject.UserEmail);
-            logger.Info("The user completes Email");
+            logger.Info("The user completes Email field");
             ClickOnGender(practiceFormObject);
             logger.Info("The user clicks on Gender");
             FillPhoneNumber(practiceFormObject.UserNumber);
-            logger.Info("The user completes the Phone Number");
+            logger.Info("The user completes the Phone Number field");
             FillDateOfBirth(practiceFormObject.Month, practiceFormObject.Year, practiceFormObject.Day);
-            logger.Info("The user completes the Date of Birth");
+            logger.Info("The user completes the Date of Birth field");
             FillSubjects(practiceFormObject.Subjects);
-            logger.Info("The user completes subjects");
+            logger.Info("The user completes Subjects field");
             FillHobies(practiceFormObject);
-            logger.Info("The user clicks on desiered hobbies");
+            logger.Info("The user clicks on desiered Hobbies");
             FillAddress(practiceFormObject.CurrentAddress);
-            logger.Info("The user completes the Current Address");
+            logger.Info("The user completes the Current Address field");
             FillState(practiceFormObject.State);
             logger.Info("The user selects the State");
             FillCity(practiceFormObject.City);

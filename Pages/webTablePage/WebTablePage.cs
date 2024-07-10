@@ -35,7 +35,7 @@ namespace DemoQA_Project_SpecFlow.Pages.webTablePage
         public void addEntry(WebTableObject webTableObject)
         {
             Helpers.ClickWithJS(NewRecordButton);
-            logger.Info("The user clicks on Add Entry button field");
+            logger.Info("The user clicks on Add Entry button");
             Helpers.ClearAndFillElement(FirstNameElement, webTableObject.FirstName);
             logger.Info("The user completes the First Name field");
             Helpers.ClearAndFillElement(LastNameElement, webTableObject.LastName);

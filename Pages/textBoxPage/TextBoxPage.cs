@@ -32,18 +32,15 @@ namespace DemoQA_Project_SpecFlow.Pages.TextBoxPage
             FillFullName(textBoxObject);
             logger.Info("The user completes the Full Name field");
             FillEmail(textBoxObject);
-            logger.Info("The user completes the Email");
-
+            logger.Info("The user completes the Email field");
             FillCurrentAddress(textBoxObject);
-            logger.Info("The user completes the Current Address");
-
+            logger.Info("The user completes the Current Address field");
             FillPermanentAddress(textBoxObject);
-            logger.Info("The user completes the Permanent Address");
+            logger.Info("The user completes the Permanent Address field");
             ValidateForm(textBoxObject);
             logger.Info("The form is validated");
             SubmitForm();
             logger.Info("The form is submited");
-
         }
 
         public void FillFullName(TextBoxObject textBoxObject)
