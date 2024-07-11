@@ -12,7 +12,7 @@ namespace DemoQA_Project_SpecFlow.loggerUtility
     {
         private readonly static string regressionLogFile = "RegressionLogs";
         private readonly static string logConfigFile = "log4net.config";
-        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        public static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private static string testName = string.Empty;
 
         static LoggerUtility()

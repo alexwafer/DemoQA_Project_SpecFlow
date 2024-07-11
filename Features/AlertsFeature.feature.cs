@@ -20,10 +20,10 @@ namespace DemoQA_Project_SpecFlow.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AltertsFeature")]
+    [NUnit.Framework.DescriptionAttribute("AlertsFeature")]
     [NUnit.Framework.CategoryAttribute("RegressionSuite")]
     [NUnit.Framework.CategoryAttribute("SmokeSuite")]
-    public partial class AltertsFeatureFeature
+    public partial class AlertsFeatureFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -32,14 +32,14 @@ namespace DemoQA_Project_SpecFlow.Features
                 "RegressionSuite",
                 "SmokeSuite"};
         
-#line 1 "AltertsFeature.feature"
+#line 1 "AlertsFeature.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "AltertsFeature", "Interacts with Alert page", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "AlertsFeature", "Interacts with Alert page", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         

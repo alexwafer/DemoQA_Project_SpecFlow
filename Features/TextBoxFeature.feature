@@ -1,7 +1,7 @@
 ﻿@RegressionSuite @SmokeSuite
 Feature: TextBoxFeature
 
-A short summary of the feature
+Completes the fields on the Text Box screen
 
 Scenario Outline: TextBoxScenario
 	Given Home page was displayed

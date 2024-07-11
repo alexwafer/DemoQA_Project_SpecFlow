@@ -1,6 +1,8 @@
 ﻿@RegressionSuite 
 Feature: PracticeForm
 
+Completes Practice Form page with different data sets
+
 Scenario Outline: Navigate to PracticeFormPage and fill the entire form with valid values
 	Given Home page was displayed
 	When I click on Forms menu

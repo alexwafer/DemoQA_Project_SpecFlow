@@ -1,4 +1,5 @@
-﻿using DemoQA_Project_SpecFlow.PageObject.textBoxObject;
+﻿using DemoQA_Project_SpecFlow.loggerUtility;
+using DemoQA_Project_SpecFlow.PageObject.textBoxObject;
 using log4net;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -30,7 +31,7 @@ namespace DemoQA_Project_SpecFlow.Pages.TextBoxPage
         public void CompleteForm(TextBoxObject textBoxObject)
         {
             FillFullName(textBoxObject);
-            logger.Info("The user completes the Full Name field");
+            LoggerUtility.logger.Info("The user completes the Full Name field");
             FillEmail(textBoxObject);
             logger.Info("The user completes the Email field");
             FillCurrentAddress(textBoxObject);

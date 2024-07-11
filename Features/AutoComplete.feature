@@ -1,7 +1,7 @@
 ﻿@RegressionSuite @SmokeSuite
 Feature: AutoComplete
 
-A short summary of the feature
+Completes color fields on the screen
 
 Scenario Outline: AutoCompleteScenario
 	Given Home page was displayed
